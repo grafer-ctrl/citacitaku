@@ -3,425 +3,393 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kalkulator Air Minum</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
-    
+    <title>Acak Cita-Citaku!</title>
     <style>
-        /* Variabel CSS untuk kemudahan perubahan tema */
-        :root {
-            --primary-color: #2196F3; /* Biru cerah untuk elemen utama */
-            --secondary-color: #E3F2FD; /* Biru muda untuk latar belakang */
-            --text-dark: #212121;
-            --text-light: #757575;
-            --background-body: #F5F5F5;
-            --card-background: #FFFFFF;
-            --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.1);
-            --border-radius: 12px;
-        }
-
-        /* RESET dan Global Styling */
-        * {
-            box-sizing: border-box;
+        /* CSS Reset & Basic Styling */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
+            background-color: #f0f2f5;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: var(--background-body);
-            color: var(--text-dark);
-            min-height: 100vh;
+        .container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             padding: 20px;
         }
 
-        /* Container Aplikasi */
-        .app-container {
-            max-width: 450px; /* Ukuran khas layar HP */
-            margin: 0 auto;
-            background-color: var(--background-body);
-        }
-
-        /* Header */
-        .header {
-            text-align: center;
+        /* Header Styling */
+        header {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
             padding: 20px 0;
-        }
-
-        .header-icon {
-            color: var(--primary-color);
-            font-size: 30px; 
-            display: inline-block;
-            line-height: 1;
-        }
-
-        .header h1 {
-            font-size: 24px;
-            font-weight: 700;
-            margin-top: 5px;
-        }
-
-        .header p {
-            font-size: 14px;
-            color: var(--text-light);
-        }
-
-        /* Kartu Hasil */
-        .result-card {
-            background-color: var(--card-background);
-            border-radius: var(--border-radius);
-            padding: 25px;
             text-align: center;
-            box-shadow: var(--shadow-light);
-            margin-bottom: 25px;
-        }
-
-        .result-card h2 {
-            font-size: 16px;
-            font-weight: 600;
-            color: var(--text-light);
-            margin-bottom: 10px;
-        }
-
-        .result-value {
-            font-size: 48px;
-            font-weight: 800;
-            color: var(--primary-color);
-            line-height: 1.1;
-        }
-
-        .result-subtitle {
-            font-size: 18px;
-            color: var(--text-light);
-            margin-top: 5px;
-        }
-
-        .water-visual {
-            width: 100px;
-            height: 180px;
-            background-color: var(--primary-color);
-            border-radius: 10px;
-            margin: 20px auto;
-            /* Placeholder untuk bentuk botol/gelas */
-        }
-
-        .glasses-info {
-            font-size: 18px;
-            font-weight: 600;
-            color: var(--primary-color);
-        }
-
-        /* Bagian Kalkulasi */
-        .calculation-section {
-            background-color: var(--card-background);
-            border-radius: var(--border-radius);
-            padding: 25px;
-            box-shadow: var(--shadow-light);
-            margin-bottom: 25px;
-        }
-
-        .calculation-section h3 {
-            font-size: 18px;
-            font-weight: 700;
-            margin-bottom: 15px;
-        }
-
-        .input-group label {
-            display: block;
-            font-size: 14px;
-            font-weight: 600;
-            margin-bottom: 8px;
-            color: var(--text-dark);
-        }
-
-        .text-input {
             width: 100%;
-            padding: 12px;
-            border: 1px solid #E0E0E0;
-            border-radius: 8px;
-            margin-bottom: 15px;
-            font-size: 16px;
-            font-weight: 600;
-            color: var(--text-dark);
-            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
 
-        /* Tombol Pilihan (Berat Badan, Aktivitas, Iklim) */
-        .option-group {
-            display: flex;
-            flex-wrap: wrap; 
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-
-        .option-button {
-            flex-grow: 1;
-            padding: 10px 15px;
-            border: 1px solid #E0E0E0;
-            background-color: var(--card-background);
-            color: var(--text-light);
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.2s;
-            text-align: center;
-            font-size: 14px;
-            font-weight: 600;
-        }
-
-        /* Styling untuk tombol terpilih */
-        .option-button.active {
-            background-color: var(--primary-color);
-            color: var(--card-background);
-            border-color: var(--primary-color);
-            box-shadow: 0 3px 8px rgba(33, 150, 243, 0.4);
-        }
-
-        /* Tombol Pilihan dengan Icon (Aktivitas dan Iklim) */
-        .icon-option-group {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr); /* 4 kolom untuk aktivitas */
-            gap: 10px;
-            margin-bottom: 20px;
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            font-weight: 700;
         }
         
-        .climate-option-group {
-            grid-template-columns: repeat(3, 1fr); /* 3 kolom untuk iklim */
+        /* Randomizer Machine Styling */
+        .randomizer-machine {
+            background-color: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+            width: 90%;
+            max-width: 600px;
         }
-
-        .icon-option-button {
+        
+        .randomizer-machine p {
+            font-size: 1.2em;
+            color: #666;
+            margin-top: 0;
+        }
+        
+        .display-area {
+            background-color: #e9ecef;
+            border: 2px solid #ced4da;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 25px 0;
+            min-height: 70px;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 15px 5px;
-            height: 80px; 
-        }
-
-        .icon-option-button .icon {
-            font-size: 24px;
-            margin-bottom: 5px;
         }
         
-        /* Tips dan Manfaat */
-        .info-section {
-            background-color: var(--card-background);
-            border-radius: var(--border-radius);
-            padding: 15px 25px;
-            box-shadow: var(--shadow-light);
-            /* Menghilangkan margin bawah karena tidak ada iklan lagi */
-            margin-bottom: 0; 
-        }
-
-        .info-item {
-            display: flex;
-            align-items: center;
-            padding: 10px 0;
-        }
-
-        .info-item:not(:last-child) {
-            border-bottom: 1px solid #EEEEEE;
-        }
-
-        .info-icon {
-            font-size: 24px;
-            margin-right: 15px;
-            line-height: 1;
+        #profesi-display {
+            font-size: 2.2em;
+            font-weight: bold;
+            color: #495057;
+            margin: 0;
         }
         
-        .info-tips .info-icon { color: orange; }
-        .info-benefit .info-icon { color: red; }
+        #toggle-button {
+            font-size: 1.5em;
+            padding: 15px 40px;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            color: white;
+            font-weight: bold;
+            transition: background-color 0.3s, transform 0.2s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
         
-        .info-text {
-            font-size: 14px;
-            color: var(--text-dark);
+        #toggle-button.start {
+            background-color: #28a745; /* Green */
         }
 
-        /* KOTAK IKLAN TELAH DIHILANGKAN DARI HTML */
+        #toggle-button.stop {
+            background-color: #dc3545; /* Red */
+        }
+        
+        #toggle-button:hover {
+            transform: scale(1.05);
+        }
+        
+        /* Modal (Pop-up) Styling - Dipertahankan dari versi sebelumnya */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.6);
+            animation: fadeIn 0.4s;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            margin: 10% auto;
+            padding: 30px 35px;
+            border-radius: 15px;
+            width: 85%;
+            max-width: 650px;
+            position: relative;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            animation: slideIn 0.4s;
+        }
+        
+        .close-button {
+            color: #aaa;
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 32px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .close-button:hover,
+        .close-button:focus {
+            color: black;
+        }
+        
+        #modal-title {
+            margin-top: 0;
+            color: #764ba2;
+        }
+
+        #modal-tips {
+            font-size: 1.1em;
+            line-height: 1.7;
+            white-space: pre-wrap;
+        }
+        
+        @keyframes fadeIn { from {opacity: 0;} to {opacity: 1;} }
+        @keyframes slideIn { from {transform: translateY(-50px); opacity: 0;} to {transform: translateY(0); opacity: 1;} }
+
+        @media (max-width: 480px) {
+            #profesi-display {
+                font-size: 1.8em;
+            }
+        }
+
     </style>
 </head>
 <body>
-    <div class="app-container">
 
-        <div class="header">
-            <span class="header-icon">💧</span>
-            <h1>Kalukator Air Minum</h1>
-            <p>Hitung kebutuhan hidrasi harian Anda</p>
-        </div>
+    <header>
+        <h1>Acak Cita-Citaku!</h1>
+    </header>
 
-        <div class="result-card">
-            <h2>Kebutuhan Air Harian Anda</h2>
-            <div class="result-value">3465 mL</div>
-            <div class="result-subtitle">3.5 Liter</div>
-            <div class="water-visual">
-                </div>
-            <div class="glasses-info">
-                14 gelas per hari
+    <main class="container">
+        <div class="randomizer-machine">
+            <p>Tekan tombol di bawah untuk menemukan profesi impianmu!</p>
+            <div class="display-area">
+                <h2 id="profesi-display">...</h2>
             </div>
+            <button id="toggle-button" class="start">Mulai Acak</button>
         </div>
-        
-        <div class="calculation-section">
-            <h3>Kalkulasi Saya</h3>
+    </main>
 
-            <div class="input-group">
-                <label for="berat-badan">Berat Badan (kg)</label>
-                <input type="number" id="berat-badan" class="text-input" value="70">
-            </div>
-            
-            <div class="option-group">
-                <button class="option-button">50kg</button>
-                <button class="option-button">60kg</button>
-                <button class="option-button active">70kg</button>
-                <button class="option-button">80kg</button>
-                <button class="option-button">90kg</button>
-                <button class="option-button">100kg</button>
-            </div>
-
-            <label>Tingkat Aktivitas</label>
-            <div class="icon-option-group">
-                <button class="option-button icon-option-button">
-                    <span class="icon">🛋️</span>Santai
-                </button>
-                <button class="option-button icon-option-button">
-                    <span class="icon">🚶</span>Ringan
-                </button>
-                <button class="option-button icon-option-button active">
-                    <span class="icon">🏃</span>Sedang
-                </button>
-                <button class="option-button icon-option-button">
-                    <span class="icon">🏋️</span>Tinggi
-                </button>
-            </div>
-
-            <label>Iklim/Cuaca</label>
-            <div class="icon-option-group climate-option-group">
-                <button class="option-button icon-option-button">
-                    <span class="icon">❄️</span>Sejuk
-                </button>
-                <button class="option-button icon-option-button active">
-                    <span class="icon">❓</span>Hangat
-                </button>
-                <button class="option-button icon-option-button">
-                    <span class="icon">🔥</span>Panas
-                </button>
-            </div>
+    <!-- Modal untuk menampilkan tips -->
+    <div id="tips-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2 id="modal-title">Judul Profesi</h2>
+            <div id="modal-tips"></div>
         </div>
-        
-        <div class="info-section">
-            <div class="info-item info-tips">
-                <span class="info-icon">💡</span>
-                <div class="info-text">
-                    Tips Hidrasi: Minum air secara konsisten sepanjang hari daripada sekaligus untuk penyerapan optimal.
-                </div>
-            </div>
-            <div class="info-item info-benefit">
-                <span class="info-icon">❤️</span>
-                <div class="info-text">
-                    Manfaat Air: Cukup air membantu energi, konsentrasi, dan kesehatan kulit Anda.
-                </div>
-            </div>
-        </div>
-        
-        </div>
+    </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // 1. Dapatkan semua elemen yang dibutuhkan
-            const resultValue = document.querySelector('.result-value');
-            const resultSubtitle = document.querySelector('.result-subtitle');
-            const glassesInfo = document.querySelector('.glasses-info');
-            const weightInput = document.getElementById('berat-badan');
-            const allOptionButtons = document.querySelectorAll('.option-button');
+        document.addEventListener('DOMContentLoaded', function() {
+            // Gabungkan semua profesi ke dalam satu array besar
+            const data = {
+                teknologi: [
+                    { nama: 'Programmer', tips: `🧠 Kerjanya bikin program, aplikasi, sampai game.\n💡 Tips :\nMulai aja dulu dari belajar Python atau JavaScript. Jangan nunggu “pintar dulu baru bikin”, tapi bikin dulu biar jadi pintar!\nRajin nongkrong di GitHub, upload project kecil-kecilan. Kalau bisa, ikut hackathon — biar dapet relasi & pengalaman.` },
+                    { nama: 'Data Scientist', tips: `📊 Analisa data biar perusahaan bisa ambil keputusan yang lebih cerdas.\n💡 Tips :\nBelajar mainin data di Python, terus kenalan sama library kayak Pandas, NumPy, Scikit-Learn.\nBikin proyek kecil, misal “prediksi harga kopi minggu depan” pake data beneran. Posting hasilnya di LinkedIn, biar keliatan keren 😎` },
+                    { nama: 'Cyber Security Analyst', tips: `🕵️‍♂️ Si penjaga sistem biar nggak dibobol hacker.\n💡 Tips :\nMain CTF (Capture The Flag) biar makin jago nembus & nutup celah keamanan.\nPelajari dasar jaringan dan ambil sertifikasi kayak CEH atau CompTIA Security+.\nDan inget bro, “kalau mau jadi hacker, jadilah white hat, bukan black hat!” 😏` },
+                    { nama: 'UI/UX Designer', tips: `🎨 Tukang bikin tampilan aplikasi biar enak dipake dan dilihat.\n💡 Tips :\nBelajar Figma, Adobe XD, dan design thinking. Lihat referensi dari dribbble.com.\nJangan cuma mikirin “bagus”, tapi juga “gimana biar gampang dipake user”.\nPokoknya, desain tuh harus bisa ngomong sendiri!` },
+                    { nama: 'Web Developer', tips: `🌐 Orang di balik semua website yang kamu buka tiap hari.\n💡 Tips :\nStart dari HTML, CSS, JavaScript. Terus upgrade ke framework kayak React, Vue, atau Next.js.\nJangan lupa deploy project kamu biar bisa pamer link ke orang — kayak, “nih, web bikinanku cuy 💻✨”.` },
+                    { nama: 'AI Engineer', tips: `🤖 Ngerakit otak buat mesin biar bisa mikir.\n💡 Tips :\nBelajar machine learning dan deep learning. Coba main TensorFlow, PyTorch, atau HuggingFace.\nMulai dari hal kecil, kayak bikin bot yang bisa jawab chat — siapa tau nanti bisa bikin “AI pacar” 😆` },
+                    { nama: 'Cloud Engineer', tips: `☁️ Ahli yang ngurus server dan data biar bisa diakses dari mana aja.\n💡 Tips :\nBelajar AWS, Azure, atau Google Cloud. Banyak kursus gratis di YouTube.\nPahami konsep Docker dan Kubernetes juga, biar makin dilirik perusahaan startup besar.` },
+                    { nama: 'Game Developer', tips: `🎮 Bikin dunia imajinasi jadi nyata dalam bentuk game.\n💡 Tips :\nGunakan Unity atau Unreal Engine. Awali dari game 2D, baru naik ke 3D.\nSering upload progress ke TikTok — trust me, gamer bakal nungguin update-nya!` },
+                    { nama: 'Mobile App Developer', tips: `📱 Tukang bikin aplikasi Android/iOS yang kamu pake tiap hari.\n💡 Tips :\nBelajar Flutter (sekali bikin, bisa Android & iOS), Kotlin, atau Swift.\nBikin app simpel tapi bermanfaat, kayak to-do list lucu. Upload ke Play Store biar makin kece.` },
+                    { nama: 'DevOps Engineer', tips: `⚙️ Orang yang jembatani developer dan sistem biar semuanya lancar.\n💡 Tips :\nBelajar CI/CD, Docker, Linux, dan server. Intinya, biar sistem nggak drama waktu dideploy.\nJadi kayak “penjaga perdamaian” antara coder dan mesin 😆` },
+                    { nama: 'Blockchain Developer', tips: `💎 Otaknya Web3 & crypto.\n💡 Tips :\nPelajari smart contract pakai Solidity, main di testnet Ethereum.\nGabung komunitas Web3 Indonesia, dan jangan takut gagal — coding error itu hal wajar, bro!` },
+                    { nama: 'IT Support Specialist', tips: `🧰 Si penolong saat laptop atau jaringan error.\n💡 Tips :\nKuasai troubleshooting hardware dan software dasar.\nKalau bisa, pelajari juga basic jaringan. Sering bantu teman — nanti kamu bakal terkenal jadi “pahlawan IT kampus” 😂` },
+                    { nama: 'Database Administrator', tips: `🗄️ Si pengatur data biar aman dan cepat diakses.\n💡 Tips :\nBelajar SQL, MySQL, PostgreSQL, dan backup management.\nSuka hal yang rapi dan detail? Nah, profesi ini cocok banget buat kamu.` },
+                    { nama: 'System Analyst', tips: `🔍 Ngelihat masalah sistem dan nyusun solusi biar efisien.\n💡 Tips :\nBelajar cara baca kebutuhan user, diagram alur, dan flow bisnis.\nSering ngobrol sama orang non-teknis juga — biar bisa jadi “penerjemah manusia & komputer” 😂` },
+                    { nama: 'Digital Marketer', tips: `📢 Orang di balik iklan yang sering muncul di HP kamu.\n💡 Tips :\nBelajar SEO, social ads, dan konten marketing.\nTes iklan kecil-kecilan di IG/FB Ads — terus analisis hasilnya.\nIntinya, jangan takut “ngiklanin diri sendiri” juga 💅` },
+                    { nama: 'Social Media Manager', tips: `📱 Jaga citra dan postingan akun bisnis biar makin viral.\n💡 Tips :\nBelajar bikin konten storytelling yang nyantol di kepala orang.\nPahami algoritma tiap platform, dan selalu update tren TikTok 😜` },
+                    { nama: 'Content Creator / YouTuber', tips: `🎥 Bikin konten yang bisa hibur, edukasi, atau ngehibur diri sendiri.\n💡 Tips :\nKonsisten upload, jangan takut jelek di awal — semua YouTuber besar juga mulai dari video “cringe” 😂\nPahami edit video, lighting, dan angle biar makin kece.` },
+                    { nama: 'E-commerce Specialist', tips: `🛒 Ngatur toko online biar jualan makin cuan.\n💡 Tips :\nPelajari cara baca tren produk, iklan marketplace, dan optimasi deskripsi produk.\nCoba jualan kecil dulu, amati pola pembeli, baru gas polin ke brand besar 💰` },
+                    { nama: 'Product Manager', tips: `🧩 Si otak di balik strategi produk digital.\n💡 Tips :\nBelajar komunikasi, riset pasar, dan cara mikir “apa yang user butuh, bukan cuma pengen”.\nJadi jembatan antara tim tech, desain, dan marketing.` },
+                    { nama: 'IT Project Manager', tips: `🗂️ Pimpinan proyek IT biar semua kerja sesuai target.\n💡 Tips :\nBelajar Agile/Scrum dan komunikasi tim.\nAmbil sertifikasi PMP atau Scrum Master biar makin kece.\nDan yang paling penting — jangan baper kalau tim ngaret, tetap sabar 😅` },
+                ],
+                kesehatan: [
+                    { nama: 'Dokter Umum', tips: `💉 Pahlawan kesehatan sejati.\n💡 Tips :\nSiapin mental baja, karena kuliah kedokteran tuh panjang dan padat banget!\nRajin baca, ikut organisasi medis, dan jangan lupa jaga empati ke pasien.\nInget, pasien tuh bukan “kasus”, tapi manusia yang butuh ketenangan juga ❤️` },
+                    { nama: 'Perawat', tips: `👩‍⚕️ Si penyayang yang siap 24 jam bantu pasien.\n💡 Tips :\nBelajar multitasking dan sabar tingkat dewa 😅\nLatih komunikasi yang lembut tapi tegas.\nKalau kamu suka bantu orang, ini profesi yang bikin hati adem banget.` },
+                    { nama: 'Apoteker', tips: `💊 Sang ahli racik obat!\n💡 Tips :\nPelajari kimia farmasi dan interaksi obat.\nLatihan ngomong jelas ke pasien — soalnya apoteker itu harus bisa jelasin efek obat kayak influencer jelasin skincare 😆` },
+                    { nama: 'Ahli Gizi', tips: `🥗 Tukang atur makanan biar badan makin sehat, bukan makin lebar 😜\n💡 Tips :\nPelajari nutrisi, diet seimbang, dan gaya hidup sehat.\nSuka konten makanan? Bikin konten “gizi versi anak muda” biar rame!` },
+                    { nama: 'Psikolog', tips: `🧠 Pahlawan mental health, bukan cenayang ya 😆\n💡 Tips :\nPelajari teori kepribadian, cara konseling, dan empati tinggi.\nJangan takut jadi pendengar — kadang, itu yang paling dibutuhin orang.` },
+                    { nama: 'Fisioterapis', tips: `💪 Si penyembuh otot dan tulang.\n💡 Tips :\nBelajar anatomi tubuh dan teknik terapi.\nKalau kamu suka olahraga dan bantu orang pulih, ini cocok banget.\nBonusnya: kamu bakal ngerti cara “stretching anti pegal” paling mantap!` },
+                    { nama: 'Dokter Gigi', tips: `😁 Tukang bikin senyum makin kinclong.\n💡 Tips :\nLatihan sabar, tangan halus, dan peka detail kecil.\nSaran: jangan takut darah, tapi juga jangan terlalu fokus sama “gigi doang”, karena komunikasi ke pasien itu kunci juga.` },
+                    { nama: 'Radiografer', tips: `📸 Bukan tukang foto biasa, tapi fotonya organ dalem!\n💡 Tips :\nBelajar teknologi radiologi dan keamanan sinar X.\nKamu bakal main sama alat keren dan teknologi canggih — kayak di film sci-fi tapi nyata.` },
+                    { nama: 'Analis Kesehatan', tips: `🧫 Si detektif penyakit di balik mikroskop.\n💡 Tips :\nBelajar kimia, biologi, dan teliti banget.\nKesalahan kecil bisa bikin hasil salah, jadi fokus & rapi itu wajib!` },
+                    { nama: 'Bidan', tips: `👶 Sang penolong kehidupan pertama bayi.\n💡 Tips :\nKamu harus punya hati lembut, tapi mental kuat.\nBidan tuh kombinasi antara “emak-emak bijak” dan “superhero bersarung tangan” ❤️` },
+                    { nama: 'Ahli Kesehatan Lingkungan', tips: `🌍 Si penjaga bumi biar nggak jadi sarang penyakit.\n💡 Tips :\nPelajari sanitasi, limbah, dan kesehatan publik.\nKalau kamu cinta alam dan kebersihan, profesi ini cocok banget buat generasi go green 🌱` },
+                    { nama: 'Farmasis Industri', tips: `🏭 Ahli bikin obat dari skala lab ke pabrik.\n💡 Tips :\nPahami formulasi obat, regulasi, dan quality control.\nKerjanya di balik layar, tapi efeknya bisa nyelamatin jutaan orang.` },
+                    { nama: 'Dokter Hewan', tips: `🐶🐱 Penyelamat hewan yang lucu tapi bisa galak juga.\n💡 Tips :\nBelajar anatomi hewan dan cara tangani pasien berbulu.\nHarus sabar, soalnya pasien kamu nggak bisa ngomong “sakit di sini, dok” 😂` },
+                    { nama: 'Ahli Kesehatan Mental', tips: `🌈 Teman curhat profesional.\n💡 Tips :\nBelajar teknik konseling dan pengendalian emosi diri.\nKalau kamu tipe yang kalem dan suka bantu orang tenang, ini ladang pahala plus profesi keren.` },
+                    { nama: 'Ahli Farmakologi', tips: `🔬 Si peneliti efek obat di tubuh manusia.\n💡 Tips :\nButuh otak logis dan rasa ingin tahu tinggi.\nKalau kamu suka eksperimen dan mikir “kenapa sesuatu bisa bereaksi begini?”, ini passion-mu.` }
+                ],
+                pendidikan: [
+                    { nama: 'Guru', tips: `🍎 Pencetak generasi masa depan.\n💡 Tips :\nBelajar sabar, kreatif, dan fun waktu ngajarin.\nGunakan metode belajar interaktif biar murid nggak bosen — kayak quiz game atau TikTok edukatif 😄` },
+                    { nama: 'Dosen', tips: `🎓 Mentor para calon profesional.\n💡 Tips :\nTerus riset dan publish karya ilmiah.\nJadi dosen zaman now tuh harus tech-savvy dan punya gaya ngajarin asik, bukan cuma “baca slide & udahan” 😅` },
+                    { nama: 'Peneliti Ilmiah', tips: `🔍 Si pemburu pengetahuan baru.\n💡 Tips :\nBelajar metodologi riset dan analisis data.\nSuka nanya “kenapa?” — nah, itu bakat dasar peneliti sejati.` },
+                    { nama: 'Trainer Profesional', tips: `🎤 Si penyemangat sekaligus mentor.\n💡 Tips :\nLatih public speaking, storytelling, dan energimu.\nKalau kamu bisa bikin orang semangat cuma dari omongan, kamu udah setengah jalan jadi trainer top!` },
+                    { nama: 'Konselor Sekolah', tips: `💬 Si penyelamat murid dari stres & drama sekolah.\n💡 Tips :\nBelajar psikologi remaja dan komunikasi empatik.\nHarus bisa jadi pendengar, bukan cuma penasehat. Kadang anak sekolah cuma butuh “didengerin dulu”.` },
+                    { nama: 'Tutor Online / Privat', tips: `📚 Guru digital masa kini.\n💡 Tips :\nGunakan platform seperti YouTube, TikTok, atau Zoom buat ngajar.\nPakai gaya santai tapi jelas — biar pelajar ngerasa “belajar tapi nggak ngebosenin”.` },
+                    { nama: 'Pustakawan Modern', tips: `📖 Bukan penjaga buku doang, tapi pengatur informasi.\n💡 Tips :\nBelajar manajemen data dan literasi digital.\nZaman sekarang pustakawan itu techy juga loh — udah bukan cuma “ssstt jangan ribut!” 😂` },
+                    { nama: 'Kepala Sekolah / Rektor', tips: `🏫 Pemimpin dunia pendidikan.\n💡 Tips :\nBelajar leadership dan manajemen tim.\nHarus bisa tegas tapi tetap hangat — biar semua orang respek, bukan takut.` },
+                    { nama: 'Ahli Kurikulum', tips: `📘 Si penyusun sistem belajar biar nggak bikin pusing.\n💡 Tips :\nPelajari metode belajar modern dan evaluasi hasil.\nKamu harus mikir kayak murid juga, biar kurikulummu nggak kaku 😎` },
+                    { nama: 'Penulis Buku Pelajaran', tips: `✏️ Si kreator isi otak anak bangsa.\n💡 Tips :\nPahami cara menjelaskan hal sulit dengan gaya ringan.\nBuku bagus tuh bukan yang “pintar”, tapi yang bikin orang jadi pinter!` }
+                ],
+                bisnis: [
+                    { nama: 'Pengusaha', tips: `💡 Tips:\nMulai dari ide kecil tapi real. Jangan tunggu modal besar, tapi cari cara kreatif buat mulai dulu.\nBangun brand yang punya cerita, bukan cuma jualan. Dan inget: gagal itu bagian dari jalan menuju sukses.` },
+                    { nama: 'Akuntan', tips: `💡 Tips:\nPelajari dasar akuntansi dan software seperti Excel & Accurate.\nDisiplin, rapi, dan teliti wajib banget — karena salah satu angka bisa bikin laporan keuangan kacau.` },
+                    { nama: 'Analis Keuangan', tips: `💡 Tips:\nBelajar cara baca laporan keuangan dan tren pasar.\nIkuti berita ekonomi setiap hari biar paham arah dunia bisnis.\nLatih logika dan insting investasi dari simulasi dulu sebelum main uang beneran.` },
+                    { nama: 'Manajer Keuangan', tips: `💡 Tips:\nHarus bisa ngatur duit orang lain kayak ngatur duit sendiri — bedanya, tanggung jawabnya lebih berat.\nPelajari budgeting, cash flow, dan resiko keuangan.\nKomunikasi juga penting, karena bakal sering dealing sama pimpinan.` },
+                    { nama: 'Marketing Executive', tips: `💡 Tips:\nPahami cara mikir pelanggan dan tren sosial.\nBikin strategi promosi yang relevan, bukan cuma keren.\nLatih kemampuan storytelling — biar produkmu bisa “ngomong” sendiri ke pasar.` },
+                    { nama: 'Sales Profesional', tips: `💡 Tips:\nJangan cuma jual barang, tapi jual solusi.\nBangun kepercayaan lewat komunikasi jujur dan cepat tanggap.\nSemakin sering ditolak, semakin cepat kamu nemu gaya jualan yang cocok.` },
+                    { nama: 'Investor', tips: `💡 Tips:\nPelajari cara analisis fundamental & teknikal sebelum taruh duit.\nMulai kecil, jangan langsung all-in.\nFokus ke mindset jangka panjang, bukan pengen kaya semalam.` },
+                    { nama: 'Manajer HRD', tips: `💡 Tips:\nPelajari karakter orang dan cara bangun tim solid.\nHarus bisa adil, komunikatif, dan peka sama suasana kerja.\nIngat, ngatur orang itu lebih susah daripada ngatur angka 😅` },
+                    { nama: 'Konsultan Bisnis', tips: `💡 Tips:\nKuasai analisis data, strategi, dan kemampuan komunikasi.\nHarus bisa lihat masalah dari sisi luar dan kasih solusi yang masuk akal.\nJangan cuma “ngasih saran”, tapi bantu eksekusi juga.` },
+                    { nama: 'Brand Manager', tips: `💡 Tips:\nKenali produk sampai detail terkecil, dan pahami apa yang bikin orang suka.\nKoordinasi tim desain, marketing, dan riset itu penting banget.\nTujuan utamanya: bikin produkmu punya jiwa di mata konsumen.` },
+                    { nama: 'Wirausaha Sosial', tips: `💡 Tips:\nGabungkan bisnis + niat bantu orang.\nBikin produk yang berdampak sosial, bukan cuma profit.\nKalau niatnya tulus, brand kamu bakal punya nilai lebih di mata publik.` }
+                ],
+                kreatif: [
+                    { nama: 'Desainer Grafis', tips: `💡 Tips:\nPelajari tools kayak Adobe Photoshop, Illustrator, atau Canva.\nLatih sense of visual dan kombinasi warna.\nJangan takut eksplor gaya sendiri, biar desainmu punya ciri khas.` },
+                    { nama: 'Fotografer', tips: `💡 Tips:\nPahami dasar pencahayaan, komposisi, dan storytelling lewat gambar.\nLatihan terus di berbagai kondisi cahaya dan objek.\nUpload karya di sosial media, biar orang tahu gaya fotomu.` },
+                    { nama: 'Videografer', tips: `💡 Tips:\nPelajari teknik kamera, angle, dan editing.\nCoba berbagai konsep: cinematic, vlog, dokumenter.\nKuncinya bukan alat mahal, tapi cerita yang kuat dalam video.` },
+                    { nama: 'Editor Video', tips: `💡 Tips:\nBelajar software seperti CapCut, Premiere Pro, atau DaVinci Resolve.\nMainin tempo, musik, dan efek biar video punya emosi.\nJangan asal potong — setiap transisi harus ada maksudnya.` },
+                    { nama: 'Animator', tips: `💡 Tips:\nPelajari animasi 2D & 3D. Coba software kayak Blender, After Effects, atau Toon Boom.\nSabar dan teliti, karena animasi itu detail banget.\nBangun gaya khas biar kamu dikenal lewat “sentuhan visualmu”.` },
+                    { nama: 'Fashion Designer', tips: `💡 Tips:\nPahami bahan, warna, dan tren.\nMulai dari desain kecil, kayak kaos atau tas, sebelum bikin koleksi penuh.\nPakai media sosial buat pamer karya dan dapet audiens loyal.` },
+                    { nama: 'Makeup Artist (MUA)', tips: `💡 Tips:\nLatih tangan biar halus dan cepat.\nPahami berbagai tipe kulit dan gaya makeup.\nUpload hasil makeover ke TikTok atau IG, biar portofolio jalan bareng promosi.` },
+                    { nama: 'Fashion Consultant', tips: `💡 Tips:\nPunya sense of fashion tinggi dan ngerti body shape.\nBisa gabungin warna & gaya sesuai karakter orang.\nKalau kamu suka tampil beda dan percaya diri, ini cocok banget.` },
+                    { nama: 'Content Strategist', tips: `💡 Tips:\nBelajar cara bikin rencana konten yang nyambung sama brand identity.\nAnalisa data engagement, terus ubah strategi kalau nggak cocok.\nJangan cuma posting, tapi pikirin “pesan” di balik kontennya.` },
+                    { nama: 'Copywriter', tips: `💡 Tips:\nLatih kemampuan nulis yang bisa bikin orang klik, beli, atau penasaran.\nPahami psikologi audiens dan gaya bahasa casual tapi nancep.\nKalimat pendek tapi berdampak itu senjata utama.` },
+                    { nama: 'Public Relations (PR)', tips: `💡 Tips:\nKamu harus bisa ngomong hal susah jadi mudah dimengerti publik.\nLatih komunikasi krisis dan cara bangun citra positif.\nPunya banyak relasi = aset berharga banget.` },
+                    { nama: 'Event Organizer (EO)', tips: `💡 Tips:\nBelajar koordinasi waktu, tim, dan vendor.\nSelalu siap dengan rencana cadangan — karena di dunia event, chaos itu normal.\nKalau kamu kreatif dan suka suasana rame, ini surga buatmu.` },
+                    { nama: 'Influencer', tips: `💡 Tips:\nTemukan niche dan gaya konten yang bikin kamu beda.\nKonsisten posting dan bangun komunitas, bukan cuma follower.\nJadi autentik — karena orang sekarang lebih suka yang real daripada yang “sempurna”.` },
+                    { nama: 'Podcaster', tips: `💡 Tips:\nLatih suara dan gaya ngobrol yang santai tapi berisi.\nBahas topik yang kamu kuasai, jangan ikut-ikut an tren doang.\nGunakan mic sederhana dulu, yang penting konsisten upload.` }
+                ],
+                seni: [
+                    { nama: 'Musisi / Penyanyi', tips: `💡 Tips:\nLatih suara dan rasa — bukan cuma teknik, tapi juga soul.\nRekam lagu cover di HP pun nggak masalah, yang penting niat dan konsisten upload.\nMain di kafe, acara kampus, atau TikTok Live bisa jadi jalan awal buat dikenal.` },
+                    { nama: 'Produser Musik', tips: `💡 Tips:\nBelajar mixing, mastering, dan DAW (kayak FL Studio, Logic, atau Ableton).\nGabung komunitas musik online buat kolaborasi.\nEksperimen terus sampai nemuin “signature sound” kamu sendiri.` },
+                    { nama: 'Aktor / Aktris', tips: `💡 Tips:\nLatih ekspresi wajah dan bahasa tubuh.\nIkut casting kecil atau teater lokal dulu.\nBangun persona publik lewat konten akting pendek di TikTok atau IG Reels.` },
+                    { nama: 'Sutradara', tips: `💡 Tips:\nPahami cara bercerita visual dan arahkan orang dengan sabar.\nBelajar dasar sinematografi dan nulis naskah.\nMulai dari project kecil — film pendek bareng teman, misalnya.` },
+                    { nama: 'Penulis Naskah', tips: `💡 Tips:\nRajin nonton film dan perhatiin struktur ceritanya.\nTulislah karakter yang realistis dan dialog yang ngena.\nSering kirim naskah ke lomba atau komunitas film biar dapet feedback.` },
+                    { nama: 'Novelis', tips: `💡 Tips:\nMulai dari satu halaman per hari.\nJangan tunggu inspirasi datang — tulis aja terus.\nUpload potongan cerita ke platform kayak Wattpad, Medium, atau TikTok biar dapet pembaca awal.` },
+                    { nama: 'Illustrator', tips: `💡 Tips:\nLatih gambar tiap hari, baik digital maupun manual.\nGunakan Procreate, Photoshop, atau Clip Studio Paint.\nBangun gaya gambar unik biar mudah dikenali.` },
+                    { nama: 'Pelukis', tips: `💡 Tips:\nEksperimen dengan gaya dan bahan baru.\nPamerkan karya di media sosial, atau ikut pameran lokal.\nSeniman sukses bukan yang “ikut tren”, tapi yang berani tampil beda.` },
+                    { nama: 'Fotomodel', tips: `💡 Tips:\nLatih pose, ekspresi, dan kepercayaan diri.\nBangun portofolio foto profesional.\nAktif di media sosial biar fotografer atau brand bisa nemuin kamu.` },
+                    { nama: 'Arsitek', tips: `💡 Tips:\nBelajar desain bangunan dan software CAD.\nLatih kemampuan presentasi, karena kamu bakal jual ide, bukan cuma gambar.\nPunya imajinasi tinggi dan logika teknis itu kombinasi emas.` },
+                    { nama: 'Desainer Interior', tips: `💡 Tips:\nPelajari kombinasi warna, pencahayaan, dan tata ruang.\nMulai dari desain kamar sendiri, upload hasilnya ke sosmed.\nKlien bakal datang kalau gaya kamu punya ciri khas.` }
+                ],
+                hukum: [
+                    { nama: 'Pengacara', tips: `💡 Tips:\nPelajari hukum dengan disiplin, dan latih kemampuan debat sopan.\nJangan cuma hafal pasal, tapi juga ngerti sisi kemanusiaan klien.\nIntegritas itu segalanya di profesi ini.` },
+                    { nama: 'Notaris', tips: `💡 Tips:\nButuh pendidikan hukum + profesi notaris.\nTeliti, jujur, dan paham detail dokumen hukum.\nProfesi ini butuh ketenangan dan tanggung jawab besar.` },
+                    { nama: 'Hakim', tips: `💡 Tips:\nBelajar adil tanpa pandang bulu.\nKuasai hukum dan etika dengan serius.\nIni profesi yang menuntut hati bersih dan logika tajam.` },
+                    { nama: 'Jaksa', tips: `💡 Tips:\nPahami hukum pidana dan cara penyelidikan.\nHarus berani, logis, dan siap berdiri di depan publik.\nJaga integritas, karena kamu penegak kebenaran.` },
+                    { nama: 'Polisi', tips: `💡 Tips:\nJaga fisik dan mental kuat.\nPelajari etika, komunikasi, dan hukum dasar.\nTujuan utamamu: melindungi, bukan menakuti masyarakat.` },
+                    { nama: 'Tentara / TNI', tips: `💡 Tips:\nDisiplin, loyal, dan punya fisik prima.\nBelajar strategi, kedisiplinan, dan rasa tanggung jawab tinggi.\nBangga jadi pelindung bangsa — tapi tetap rendah hati.` },
+                    { nama: 'Pegawai Negeri (ASN)', tips: `💡 Tips:\nFokus ke pelayanan publik, bukan gengsi jabatan.\nPelajari aturan birokrasi dan manajemen publik.\nKerja dengan hati biar bisa jadi ASN yang dicintai masyarakat.` },
+                    { nama: 'Diplomat', tips: `💡 Tips:\nKuasai bahasa asing dan etika internasional.\nPunya wawasan global dan kemampuan negosiasi.\nCocok buat kamu yang suka traveling dan hubungan antarnegara.` },
+                    { nama: 'Penerjemah', tips: `💡 Tips:\nKuasai dua bahasa (minimal), termasuk slang dan budaya masing-masing.\nLatih kecepatan dan akurasi terjemahan.\nCoba freelance online di situs kayak Upwork atau Fiverr.` },
+                    { nama: 'Jurnalis / Reporter', tips: `💡 Tips:\nLatih kemampuan nulis cepat, wawancara, dan berpikir kritis.\nHarus berani turun lapangan dan netral dalam berita.\nGunakan media sosial buat bangun reputasi sebagai jurnalis yang kredibel.` },
+                    { nama: 'Fotografer Jurnalistik', tips: `💡 Tips:\nLatih kepekaan terhadap momen penting.\nBelajar bercerita lewat foto, bukan sekadar estetik.\nKadang satu foto bisa ngomong lebih banyak dari seribu kata.` }
+                ],
+                lainnya: [
+                    { nama: 'Pilot', tips: `💡 Tips:\nButuh pelatihan intensif dan sertifikasi resmi.\nKonsentrasi, disiplin, dan tanggung jawab tinggi.\nMimpi terbang nggak cuma harfiah — ini profesi yang literally bawa kamu ke langit ✈️` },
+                    { nama: 'Pramugari / Pramugara', tips: `💡 Tips:\nLatih komunikasi sopan dan penampilan rapi.\nHarus sigap dalam kondisi darurat, bukan cuma senyum manis.\nKuasai bahasa asing biar makin profesional.` },
+                    { nama: 'Pemandu Wisata', tips: `💡 Tips:\nKuasai sejarah dan budaya tempat wisata.\nPunya gaya bicara seru dan nggak ngebosenin.\nKalau kamu suka jalan dan ngobrol, ini kerja sambil liburan 😎` },
+                    { nama: 'Chef / Koki', tips: `💡 Tips:\nMulai dari dapur rumah sendiri, coba resep baru tiap minggu.\nPahami teknik dasar masak, plating, dan cita rasa.\nUpload hasil masakanmu ke TikTok — siapa tau viral dan jadi resto beneran 🍳` },
+                    { nama: 'Barista', tips: `💡 Tips:\nPelajari jenis kopi, cara brewing, dan art-nya.\nLatihan terus bikin latte art biar hasilnya makin keren.\nGabung komunitas kopi, banyak peluang di sana.` },
+                    { nama: 'Petani Modern', tips: `💡 Tips:\nManfaatkan teknologi pertanian kayak hidroponik atau IoT.\nJual hasil panen lewat online biar cuannya dobel.\nBuktikan kalau petani zaman sekarang itu keren dan cuan juga 🌾` },
+                    { nama: 'YouTuber / Streamer', tips: `💡 Tips:\nTemukan niche dan gaya bicara unik.\nKonsisten upload dan jaga interaksi sama penonton.\nJangan fokus views dulu — fokus ke kualitas konten, hasil bakal nyusul.` },
+                    { nama: 'Developer Startup', tips: `💡 Tips:\nCari masalah nyata di sekitar, terus bikin solusi berbasis teknologi.\nKumpulin tim yang satu visi dan tahan banting.\nStartup sukses itu hasil dari trial & error yang nggak berhenti.` }
+                ]
+            };
+            const allProfesi = Object.values(data).flat();
 
-            // Kebutuhan air dasar (misalnya, 35 mL per kg berat badan)
-            const BASE_ML_PER_KG = 35; 
-            const ML_PER_GLASS = 240; // Asumsi 1 gelas = 240 mL
+            // Elemen-elemen interaktif
+            const profesiDisplay = document.getElementById('profesi-display');
+            const toggleButton = document.getElementById('toggle-button');
+            
+            // Elemen Modal
+            const modal = document.getElementById('tips-modal');
+            const modalTitle = document.getElementById('modal-title');
+            const modalTips = document.getElementById('modal-tips');
+            const closeButton = document.querySelector('.close-button');
 
-            // Fungsi utama untuk melakukan perhitungan
-            function updateCalculation() {
-                // Ambil Berat Badan dari input yang aktif atau tombol yang dipilih
-                let currentWeight = parseInt(weightInput.value) || 70; // Default 70 kg
+            // Variabel state
+            let isRandomizing = false;
+            let randomInterval = null;
+            
+            // Fungsi utama untuk toggle
+            toggleButton.addEventListener('click', () => {
+                if (isRandomizing) {
+                    stopRandomizer();
+                } else {
+                    startRandomizer();
+                }
+            });
 
-                // Mendapatkan faktor penyesuaian dari aktivitas dan iklim (Simulasi Sederhana)
-                let activityFactor = 1.0;
-                let climateFactor = 1.0;
-
-                // Mendapatkan tombol aktif untuk penyesuaian
-                document.querySelectorAll('.icon-option-group button.active').forEach(button => {
-                    const text = button.textContent.trim();
-                    
-                    // Faktor Aktivitas
-                    if (text.includes('Ringan')) {
-                        activityFactor = 1.1;
-                    } else if (text.includes('Sedang')) {
-                        activityFactor = 1.2;
-                    } else if (text.includes('Tinggi')) {
-                        activityFactor = 1.3;
-                    }
-
-                    // Faktor Iklim
-                    if (text.includes('Panas')) {
-                        climateFactor = 1.1;
-                    } else if (text.includes('Sejuk')) {
-                        climateFactor = 0.95;
-                    }
-                });
-
-                // 2. Kalkulasi Kebutuhan Air
-                let requiredML = currentWeight * BASE_ML_PER_KG * activityFactor * climateFactor;
+            function startRandomizer() {
+                isRandomizing = true;
+                toggleButton.textContent = 'Stop!';
+                toggleButton.classList.remove('start');
+                toggleButton.classList.add('stop');
                 
-                // Pembulatan ke kelipatan terdekat 50 mL
-                requiredML = Math.round(requiredML / 50) * 50;
-                
-                const requiredLiters = (requiredML / 1000).toFixed(1);
-                const requiredGlasses = Math.ceil(requiredML / ML_PER_GLASS);
+                randomInterval = setInterval(() => {
+                    const randomIndex = Math.floor(Math.random() * allProfesi.length);
+                    profesiDisplay.textContent = allProfesi[randomIndex].nama;
+                }, 80); // Kecepatan acak (ms)
+            }
+            
+            function stopRandomizer() {
+                isRandomizing = false;
+                clearInterval(randomInterval);
+                toggleButton.textContent = 'Mulai Acak';
+                toggleButton.classList.remove('stop');
+                toggleButton.classList.add('start');
 
-                // 3. Perbarui Tampilan
-                resultValue.textContent = `${requiredML} mL`;
-                resultSubtitle.textContent = `${requiredLiters} Liter`;
-                glassesInfo.textContent = `${requiredGlasses} gelas per hari`;
+                const finalProfesiName = profesiDisplay.textContent;
+                const result = allProfesi.find(profesi => profesi.nama === finalProfesiName);
+                
+                if (result) {
+                    showResult(result);
+                }
+            }
+            
+            function showResult(profesi) {
+                modalTitle.textContent = profesi.nama;
+                modalTips.textContent = profesi.tips;
+                modal.style.display = 'block';
             }
 
+            // Fungsi untuk menutup modal
+            function closeModal() {
+                modal.style.display = 'none';
+            }
 
-            // 4. Tambahkan Event Listener untuk Tombol Pilihan
-            allOptionButtons.forEach(button => {
-                button.addEventListener('click', (e) => {
-                    const clickedButton = e.currentTarget; 
+            closeButton.addEventListener('click', closeModal);
 
-                    // Hapus kelas 'active' dari semua tombol sejenis dalam grup yang sama
-                    const parentGroup = clickedButton.closest('.option-group') || clickedButton.closest('.icon-option-group');
-                    if (parentGroup) {
-                        parentGroup.querySelectorAll('.option-button').forEach(btn => btn.classList.remove('active'));
-                    }
-                    
-                    // Tambahkan kelas 'active' ke tombol yang baru diklik
-                    clickedButton.classList.add('active');
-
-                    // Jika tombol yang diklik adalah tombol berat (misalnya '80kg')
-                    const weightMatch = clickedButton.textContent.match(/(\d+)kg/);
-                    if (weightMatch) {
-                        // Perbarui input teks berat badan
-                        weightInput.value = weightMatch[1];
-                    }
-
-                    // Setelah tombol diklik, hitung ulang
-                    updateCalculation();
-                });
-            });
-
-            // 5. Tambahkan Event Listener untuk Input Berat Badan
-            weightInput.addEventListener('input', () => {
-                // Hapus status 'active' dari semua tombol berat jika input diubah
-                const weightGroup = weightInput.closest('.calculation-section').querySelector('.option-group');
-                if (weightGroup) {
-                     weightGroup.querySelectorAll('.option-button').forEach(btn => {
-                         btn.classList.remove('active');
-                     });
+            window.addEventListener('click', (event) => {
+                if (event.target == modal) {
+                    closeModal();
                 }
-                updateCalculation();
             });
-            
-            // 6. Jalankan kalkulasi pertama kali saat halaman dimuat
-            updateCalculation();
+
+            window.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape') {
+                    closeModal();
+                }
+            });
         });
     </script>
+
 </body>
 </html>

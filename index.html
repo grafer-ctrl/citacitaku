@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Air Minum</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Variabel CSS untuk kemudahan perubahan tema */
+        :root {
+            --primary-color: #2196F3; /* Biru cerah untuk elemen utama */
+            --secondary-color: #E3F2FD; /* Biru muda untuk latar belakang */
+            --text-dark: #212121;
+            --text-light: #757575;
+            --background-body: #F5F5F5;
+            --card-background: #FFFFFF;
+            --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --border-radius: 12px;
+        }
+
+        /* RESET dan Global Styling */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--background-body);
+            color: var(--text-dark);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* Container Aplikasi */
+        .app-container {
+            max-width: 450px; /* Ukuran khas layar HP */
+            margin: 0 auto;
+            background-color: var(--background-body);
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .header-icon {
+            color: var(--primary-color);
+            font-size: 30px; 
+            display: inline-block;
+            line-height: 1;
+        }
+
+        .header h1 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-top: 5px;
+        }
+
+        .header p {
+            font-size: 14px;
+            color: var(--text-light);
+        }
+
+        /* Kartu Hasil */
+        .result-card {
+            background-color: var(--card-background);
+            border-radius: var(--border-radius);
+            padding: 25px;
+            text-align: center;
+            box-shadow: var(--shadow-light);
+            margin-bottom: 25px;
+        }
+
+        .result-card h2 {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-light);
+            margin-bottom: 10px;
+        }
+
+        .result-value {
+            font-size: 48px;
+            font-weight: 800;
+            color: var(--primary-color);
+            line-height: 1.1;
+        }
+
+        .result-subtitle {
+            font-size: 18px;
+            color: var(--text-light);
+            margin-top: 5px;
+        }
+
+        .water-visual {
+            width: 100px;
+            height: 180px;
+            background-color: var(--primary-color);
+            border-radius: 10px;
+            margin: 20px auto;
+            /* Placeholder untuk bentuk botol/gelas */
+        }
+
+        .glasses-info {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        /* Bagian Kalkulasi */
+        .calculation-section {
+            background-color: var(--card-background);
+            border-radius: var(--border-radius);
+            padding: 25px;
+            box-shadow: var(--shadow-light);
+            margin-bottom: 25px;
+        }
+
+        .calculation-section h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-dark);
+        }
+
+        .text-input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #E0E0E0;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-dark);
+            text-align: center;
+        }
+
+        /* Tombol Pilihan (Berat Badan, Aktivitas, Iklim) */
+        .option-group {
+            display: flex;
+            flex-wrap: wrap; 
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .option-button {
+            flex-grow: 1;
+            padding: 10px 15px;
+            border: 1px solid #E0E0E0;
+            background-color: var(--card-background);
+            color: var(--text-light);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        /* Styling untuk tombol terpilih */
+        .option-button.active {
+            background-color: var(--primary-color);
+            color: var(--card-background);
+            border-color: var(--primary-color);
+            box-shadow: 0 3px 8px rgba(33, 150, 243, 0.4);
+        }
+
+        /* Tombol Pilihan dengan Icon (Aktivitas dan Iklim) */
+        .icon-option-group {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /* 4 kolom untuk aktivitas */
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .climate-option-group {
+            grid-template-columns: repeat(3, 1fr); /* 3 kolom untuk iklim */
+        }
+
+        .icon-option-button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 15px 5px;
+            height: 80px; 
+        }
+
+        .icon-option-button .icon {
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+        
+        /* Tips dan Manfaat */
+        .info-section {
+            background-color: var(--card-background);
+            border-radius: var(--border-radius);
+            padding: 15px 25px;
+            box-shadow: var(--shadow-light);
+            /* Menghilangkan margin bawah karena tidak ada iklan lagi */
+            margin-bottom: 0; 
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 0;
+        }
+
+        .info-item:not(:last-child) {
+            border-bottom: 1px solid #EEEEEE;
+        }
+
+        .info-icon {
+            font-size: 24px;
+            margin-right: 15px;
+            line-height: 1;
+        }
+        
+        .info-tips .info-icon { color: orange; }
+        .info-benefit .info-icon { color: red; }
+        
+        .info-text {
+            font-size: 14px;
+            color: var(--text-dark);
+        }
+
+        /* KOTAK IKLAN TELAH DIHILANGKAN DARI HTML */
+    </style>
+</head>
+<body>
+    <div class="app-container">
+
+        <div class="header">
+            <span class="header-icon">💧</span>
+            <h1>Kalukator Air Minum</h1>
+            <p>Hitung kebutuhan hidrasi harian Anda</p>
+        </div>
+
+        <div class="result-card">
+            <h2>Kebutuhan Air Harian Anda</h2>
+            <div class="result-value">3465 mL</div>
+            <div class="result-subtitle">3.5 Liter</div>
+            <div class="water-visual">
+                </div>
+            <div class="glasses-info">
+                14 gelas per hari
+            </div>
+        </div>
+        
+        <div class="calculation-section">
+            <h3>Kalkulasi Saya</h3>
+
+            <div class="input-group">
+                <label for="berat-badan">Berat Badan (kg)</label>
+                <input type="number" id="berat-badan" class="text-input" value="70">
+            </div>
+            
+            <div class="option-group">
+                <button class="option-button">50kg</button>
+                <button class="option-button">60kg</button>
+                <button class="option-button active">70kg</button>
+                <button class="option-button">80kg</button>
+                <button class="option-button">90kg</button>
+                <button class="option-button">100kg</button>
+            </div>
+
+            <label>Tingkat Aktivitas</label>
+            <div class="icon-option-group">
+                <button class="option-button icon-option-button">
+                    <span class="icon">🛋️</span>Santai
+                </button>
+                <button class="option-button icon-option-button">
+                    <span class="icon">🚶</span>Ringan
+                </button>
+                <button class="option-button icon-option-button active">
+                    <span class="icon">🏃</span>Sedang
+                </button>
+                <button class="option-button icon-option-button">
+                    <span class="icon">🏋️</span>Tinggi
+                </button>
+            </div>
+
+            <label>Iklim/Cuaca</label>
+            <div class="icon-option-group climate-option-group">
+                <button class="option-button icon-option-button">
+                    <span class="icon">❄️</span>Sejuk
+                </button>
+                <button class="option-button icon-option-button active">
+                    <span class="icon">❓</span>Hangat
+                </button>
+                <button class="option-button icon-option-button">
+                    <span class="icon">🔥</span>Panas
+                </button>
+            </div>
+        </div>
+        
+        <div class="info-section">
+            <div class="info-item info-tips">
+                <span class="info-icon">💡</span>
+                <div class="info-text">
+                    Tips Hidrasi: Minum air secara konsisten sepanjang hari daripada sekaligus untuk penyerapan optimal.
+                </div>
+            </div>
+            <div class="info-item info-benefit">
+                <span class="info-icon">❤️</span>
+                <div class="info-text">
+                    Manfaat Air: Cukup air membantu energi, konsentrasi, dan kesehatan kulit Anda.
+                </div>
+            </div>
+        </div>
+        
+        </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. Dapatkan semua elemen yang dibutuhkan
+            const resultValue = document.querySelector('.result-value');
+            const resultSubtitle = document.querySelector('.result-subtitle');
+            const glassesInfo = document.querySelector('.glasses-info');
+            const weightInput = document.getElementById('berat-badan');
+            const allOptionButtons = document.querySelectorAll('.option-button');
+
+            // Kebutuhan air dasar (misalnya, 35 mL per kg berat badan)
+            const BASE_ML_PER_KG = 35; 
+            const ML_PER_GLASS = 240; // Asumsi 1 gelas = 240 mL
+
+            // Fungsi utama untuk melakukan perhitungan
+            function updateCalculation() {
+                // Ambil Berat Badan dari input yang aktif atau tombol yang dipilih
+                let currentWeight = parseInt(weightInput.value) || 70; // Default 70 kg
+
+                // Mendapatkan faktor penyesuaian dari aktivitas dan iklim (Simulasi Sederhana)
+                let activityFactor = 1.0;
+                let climateFactor = 1.0;
+
+                // Mendapatkan tombol aktif untuk penyesuaian
+                document.querySelectorAll('.icon-option-group button.active').forEach(button => {
+                    const text = button.textContent.trim();
+                    
+                    // Faktor Aktivitas
+                    if (text.includes('Ringan')) {
+                        activityFactor = 1.1;
+                    } else if (text.includes('Sedang')) {
+                        activityFactor = 1.2;
+                    } else if (text.includes('Tinggi')) {
+                        activityFactor = 1.3;
+                    }
+
+                    // Faktor Iklim
+                    if (text.includes('Panas')) {
+                        climateFactor = 1.1;
+                    } else if (text.includes('Sejuk')) {
+                        climateFactor = 0.95;
+                    }
+                });
+
+                // 2. Kalkulasi Kebutuhan Air
+                let requiredML = currentWeight * BASE_ML_PER_KG * activityFactor * climateFactor;
+                
+                // Pembulatan ke kelipatan terdekat 50 mL
+                requiredML = Math.round(requiredML / 50) * 50;
+                
+                const requiredLiters = (requiredML / 1000).toFixed(1);
+                const requiredGlasses = Math.ceil(requiredML / ML_PER_GLASS);
+
+                // 3. Perbarui Tampilan
+                resultValue.textContent = `${requiredML} mL`;
+                resultSubtitle.textContent = `${requiredLiters} Liter`;
+                glassesInfo.textContent = `${requiredGlasses} gelas per hari`;
+            }
+
+
+            // 4. Tambahkan Event Listener untuk Tombol Pilihan
+            allOptionButtons.forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const clickedButton = e.currentTarget; 
+
+                    // Hapus kelas 'active' dari semua tombol sejenis dalam grup yang sama
+                    const parentGroup = clickedButton.closest('.option-group') || clickedButton.closest('.icon-option-group');
+                    if (parentGroup) {
+                        parentGroup.querySelectorAll('.option-button').forEach(btn => btn.classList.remove('active'));
+                    }
+                    
+                    // Tambahkan kelas 'active' ke tombol yang baru diklik
+                    clickedButton.classList.add('active');
+
+                    // Jika tombol yang diklik adalah tombol berat (misalnya '80kg')
+                    const weightMatch = clickedButton.textContent.match(/(\d+)kg/);
+                    if (weightMatch) {
+                        // Perbarui input teks berat badan
+                        weightInput.value = weightMatch[1];
+                    }
+
+                    // Setelah tombol diklik, hitung ulang
+                    updateCalculation();
+                });
+            });
+
+            // 5. Tambahkan Event Listener untuk Input Berat Badan
+            weightInput.addEventListener('input', () => {
+                // Hapus status 'active' dari semua tombol berat jika input diubah
+                const weightGroup = weightInput.closest('.calculation-section').querySelector('.option-group');
+                if (weightGroup) {
+                     weightGroup.querySelectorAll('.option-button').forEach(btn => {
+                         btn.classList.remove('active');
+                     });
+                }
+                updateCalculation();
+            });
+            
+            // 6. Jalankan kalkulasi pertama kali saat halaman dimuat
+            updateCalculation();
+        });
+    </script>
+</body>
+</html>
